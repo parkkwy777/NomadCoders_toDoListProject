@@ -30,19 +30,20 @@ function saveToDos(){
 
 function paintToDo(text){
     const li = document.createElement("li");
-    const delBtn = document.createElement("button");
-    const span = document.createElement("span");
-
+    const delBtn = document.createElement("span");
+    const label = document.createElement("label");
     const newId = idNumbers;
     idNumbers+=1;
 
     delBtn.innerHTML="❌";
+    delBtn.classList.add("delBtn");
     delBtn.addEventListener("click",deleteToDo); 
-    span.innerText=text;
 
     li.id=newId;
-    li.appendChild(span);
+    label.innerHTML=text;
     li.appendChild(delBtn);
+    li.appendChild(label);
+   
     toDoList.appendChild(li);
     
     const toDoObj ={
@@ -61,16 +62,17 @@ function handleSubmit(event){
 }
 
 function loadToDos(){
-    const loadedToDos = localStorage.getItem(TODOS_LS);
 
-    if(loadedToDos!==null){
-            console.log(loadToDos); //localstorage에서 확인하기위해 문자열로 바꾼 값
-            const parsedToDos = JSON.parse(loadedToDos); // 자바스크립트에서 처리하기위해 json문자열 데이터를 object로 변환 
-            console.log(parsedToDos);
-            parsedToDos.forEach(function(toDo){
-                paintToDo(toDo.text);
-            });
-    }
+    const loadedToDos= localStorage.getItem(TODOS_LS);
+
+        if(loadedToDos!==null){
+                console.log(loadToDos); //localstorage에서 확인하기위해 문자열로 바꾼 값
+                const parsedToDos = JSON.parse(loadedToDos); // 자바스크립트에서 처리하기위해 json문자열 데이터를 object로 변환 
+                console.log(parsedToDos);
+                parsedToDos.forEach(function(toDo){
+                    paintToDo(toDo.text);
+                });
+        }
 }
 
     function init(){
