@@ -1,1 +1,4 @@
-# NomadCoders_toDoListProject
+기능
+- 날씨 정보
+- 이름 정보 입력 및 저장
+- 해야할 일 입력 및 저장
